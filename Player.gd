@@ -10,6 +10,7 @@ export(int) var FRICTION = 10
 export(int) var GRAVITY = 6
 export(int) var JUMP_FORCE = -180
 export(int) var JUMP_RELEASE_FORCE = -80
+export(int) var MAX_DOWNWARD_FALL = 400
 export(int) var MAX_SPEED = 100
 
 
@@ -57,6 +58,7 @@ func _physics_process(_delta):
 
 func apply_gravity():
 	velocity.y += GRAVITY
+	velocity.y = min(velocity.y, MAX_DOWNWARD_FALL)
 	
 func apply_friction():
 	velocity.x = move_toward(velocity.x, 0, FRICTION)
