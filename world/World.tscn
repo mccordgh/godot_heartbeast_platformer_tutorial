@@ -43,3 +43,10 @@ position = Vector2( 252, 99 )
 
 [node name="Player" parent="Block12" instance=ExtResource( 2 )]
 position = Vector2( -144, -45 )
+ACCELERATION = 10
+ADDITIONAL_FALL_GRAVITY = 2
+FRICTION = 10
+GRAVITY = 6
+JUMP_FORCE = -180
+JUMP_RELEASE_FORCE = -80
+MAX_SPEED = 100
