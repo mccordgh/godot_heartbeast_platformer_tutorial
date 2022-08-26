@@ -15,14 +15,14 @@ func _physics_process(delta):
 	
 	if found_wall or found_ledge:
 		direction *= -1 # flip direction from Vector2 RIGHT to LEFT or LEFT to RIGHT
-		if found_wall:
-			print ("found wall")
-		if !ledgeCheckRight.is_colliding():
-			print ("ledge check right not colliding")
-		if !ledgeCheckLeft.is_colliding():
-			print ("ledge check left not colliding")
+#		if found_wall:
+#			print ("found wall")
+#		if !ledgeCheckRight.is_colliding():
+#			print ("ledge check right not colliding")
+#		if !ledgeCheckLeft.is_colliding():
+#			print ("ledge check left not colliding")
 
 	animatedSprite.flip_h = direction.x > 0
 	
-	velocity = direction * 25
+	velocity = direction * 100
 	move_and_slide(velocity, Vector2.UP)

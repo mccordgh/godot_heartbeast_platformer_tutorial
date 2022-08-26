@@ -5,15 +5,7 @@ var velocity = Vector2.ZERO
 
 onready var animatedSprite = $AnimatedSprite
 
-export(int) var ACCELERATION = 10
-export(int) var ADDITIONAL_FALL_GRAVITY = 2
-export(int) var FRICTION = 10
-export(int) var GRAVITY = 6
-export(int) var JUMP_FORCE = -180
-export(int) var JUMP_RELEASE_FORCE = -80
-export(int) var MAX_DOWNWARD_FALL = 400
-export(int) var MAX_SPEED = 100
-
+export(Resource) var moveData
 
 func _ready():
 	#animatedSprite.frames = load("res://resources/PlayerBlueSkin.tres")
@@ -36,15 +28,15 @@ func _physics_process(_delta):
 			
 	if is_on_floor():
 		if Input.is_action_just_pressed("ui_up"):
-			velocity.y = JUMP_FORCE
+			velocity.y = moveData.JUMP_FORCE
 	else:
 		animatedSprite.animation = "Jump"
 		# If velocity.y < 0 we are going up. This stops the slight hang that happens releasing jump on the way down.
-		if Input.is_action_just_released("ui_up") and velocity.y < JUMP_RELEASE_FORCE: 
-			velocity.y = JUMP_RELEASE_FORCE
+		if Input.is_action_just_released("ui_up") and velocity.y < moveData.JUMP_RELEASE_FORCE: 
+			velocity.y = moveData.JUMP_RELEASE_FORCE
 			
 		if velocity.y > 1: # We are falling
-			velocity.y += ADDITIONAL_FALL_GRAVITY
+			velocity.y += moveData.ADDITIONAL_FALL_GRAVITY
 	
 	var was_in_air = !is_on_floor()
 	velocity = move_and_slide(velocity, Vector2.UP) # is_on_floor will update when move_and_slide is called
@@ -55,11 +47,11 @@ func _physics_process(_delta):
 		animatedSprite.frame = 1
 
 func apply_gravity():
-	velocity.y += GRAVITY
-	velocity.y = min(velocity.y, MAX_DOWNWARD_FALL)
+	velocity.y += moveData.GRAVITY
+	velocity.y = min(velocity.y, moveData.MAX_DOWNWARD_FALL)
 	
 func apply_friction():
-	velocity.x = move_toward(velocity.x, 0, FRICTION)
+	velocity.x = move_toward(velocity.x, 0, moveData.FRICTION)
 
 func apply_acceleration(amount):
-	velocity.x = move_toward(velocity.x, MAX_SPEED * amount, ACCELERATION)
+	velocity.x = move_toward(velocity.x, moveData.MAX_SPEED * amount, moveData.ACCELERATION)
