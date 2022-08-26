@@ -32,10 +32,7 @@ func _physics_process(_delta):
 	else:
 		apply_acceleration(input.x)
 		animatedSprite.animation = "Run"
-		if input.x > 0:
-			animatedSprite.flip_h = true
-		elif input.x < 0:
-			animatedSprite.flip_h = false
+		animatedSprite.flip_h = input.x > 0
 			
 	if is_on_floor():
 		if Input.is_action_just_pressed("ui_up"):
