@@ -14,6 +14,7 @@ moveData = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 2 )
+animation = "Idle"
 playing = true
 flip_h = true
 
@@ -24,3 +25,10 @@ shape = SubResource( 3 )
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 smoothing_speed = 10.0
+
+[node name="LadderCheck" type="RayCast2D" parent="."]
+position = Vector2( 0, -4 )
+enabled = true
+cast_to = Vector2( 0, 18 )
+collide_with_areas = true
+collide_with_bodies = false
