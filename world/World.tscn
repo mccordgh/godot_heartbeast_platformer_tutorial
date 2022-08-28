@@ -16,7 +16,6 @@ tile_data = PoolIntArray( -131085, 0, 0, -131084, 0, 0, -65549, 0, 0, -65548, 0,
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -90, 63 )
 z_index = 10
-moveData = null
 
 [node name="Spikes" parent="." instance=ExtResource( 3 )]
 position = Vector2( 135, 126 )

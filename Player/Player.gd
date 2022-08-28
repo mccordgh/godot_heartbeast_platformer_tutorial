@@ -1,19 +1,24 @@
 extends KinematicBody2D
 class_name Player
 
+export(Resource) var moveData = preload("res://Player/FastPlayerMovementData.tres") as PlayerMovementData
+
 enum {
 	MOVE,
 	CLIMB,
 }
 
-var velocity = Vector2.ZERO
-var state = MOVE
+var buffered_jump = false
 var double_jump = 1
+var state = MOVE
+var velocity = Vector2.ZERO
 
-onready var animatedSprite = $AnimatedSprite
-onready var ladderCheck = $LadderCheck
 
-export(Resource) var moveData
+
+onready var animatedSprite: = $AnimatedSprite
+onready var jumpBufferTimer: = $JumpBufferTimer
+onready var ladderCheck: = $LadderCheck
+
 
 func _physics_process(_delta):
 	var input = Vector2.ZERO
@@ -41,8 +46,11 @@ func move_state(input):
 		animatedSprite.flip_h = input.x > 0
 			
 	if is_on_floor():
-		if Input.is_action_just_pressed("ui_up"):
+		double_jump = moveData.DOUBLE_JUMP_COUNT
+		
+		if Input.is_action_just_pressed("ui_up") or buffered_jump:
 			velocity.y = moveData.JUMP_FORCE
+			buffered_jump = false
 	else:
 		animatedSprite.animation = "Jump"
 		# If velocity.y < 0 we are going up. This stops the slight hang that happens releasing jump on the way down.
@@ -52,6 +60,10 @@ func move_state(input):
 		if Input.is_action_just_pressed("ui_up") and double_jump > 0:
 			velocity.y = moveData.JUMP_FORCE
 			double_jump -= 1
+			
+		if Input.is_action_just_pressed("ui_up"):
+			buffered_jump = true
+			jumpBufferTimer.start()
 			
 		if velocity.y > 1: # We are falling
 			velocity.y += moveData.ADDITIONAL_FALL_GRAVITY
