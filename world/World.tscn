@@ -189,9 +189,9 @@ speed = 2
 curve = SubResource( 10 )
 
 [node name="PathFollow2D" parent="MovingSpikeEnemy/MovingSpikeEnemyPath" index="0"]
-position = Vector2( -27, 27 )
-rotation = -1.5708
-offset = 282.711
+position = Vector2( 45, -22.8805 )
+rotation = 1.5708
+offset = 162.73
 
 [node name="AnimationPlayer" parent="MovingSpikeEnemy" index="1"]
 playback_speed = 2.0
@@ -206,7 +206,9 @@ position = Vector2( 9, 0 )
 curve = SubResource( 5 )
 
 [node name="PathFollow2D" parent="MovingSpikeEnemy2/MovingSpikeEnemyPath" index="0"]
-position = Vector2( 0, 27 )
+position = Vector2( -13.0287, 4.02867 )
+rotation = 2.42727
+offset = 43.4476
 
 [node name="AnimationPlayer" parent="MovingSpikeEnemy2" index="1"]
 autoplay = "MoveAlongPathRubberband"
@@ -225,9 +227,9 @@ position = Vector2( 9, 0 )
 curve = SubResource( 6 )
 
 [node name="PathFollow2D" parent="MovingSpikeEnemy3/MovingSpikeEnemyPath" index="0"]
-position = Vector2( -9, 36 )
+position = Vector2( -9, -17.0072 )
 rotation = 1.5708
-offset = 107.99
+offset = 54.9962
 rotate = false
 
 [node name="Sprite" parent="MovingSpikeEnemy3/MovingSpikeEnemyPath/PathFollow2D/Enemy" index="0"]

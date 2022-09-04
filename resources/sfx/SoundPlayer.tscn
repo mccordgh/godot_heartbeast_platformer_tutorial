@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://resources/sfx/SoundPlayer.gd" type="Script" id=1]
+[ext_resource path="res://resources/sfx/hurt.wav" type="AudioStream" id=2]
+[ext_resource path="res://resources/music/pck404_cheerful_dub.ogg" type="AudioStream" id=3]
+
+[node name="SoundPlayer" type="Node"]
+script = ExtResource( 1 )
+
+[node name="AudioChannels" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioChannels"]
+stream = ExtResource( 2 )
+bus = "Sound"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="AudioChannels"]
+stream = ExtResource( 2 )
+bus = "Sound"
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="AudioChannels"]
+stream = ExtResource( 2 )
+bus = "Sound"
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="AudioChannels"]
+stream = ExtResource( 2 )
+bus = "Sound"
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="AudioChannels"]
+stream = ExtResource( 2 )
+bus = "Sound"
+
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="AudioChannels"]
+stream = ExtResource( 2 )
+bus = "Sound"
+
+[node name="AudioStreamPlayer7" type="AudioStreamPlayer" parent="AudioChannels"]
+stream = ExtResource( 2 )
+bus = "Sound"
+
+[node name="AudioStreamPlayer8" type="AudioStreamPlayer" parent="AudioChannels"]
+stream = ExtResource( 2 )
+bus = "Sound"
+
+[node name="MusicChannel" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MusicChannel"]
+stream = ExtResource( 3 )
+autoplay = true
+bus = "Music"

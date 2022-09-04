@@ -36,6 +36,10 @@ config/name="heartbeast_platformer_tutorial"
 run/main_scene="res://world/World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+SoundPlayer="*res://resources/sfx/SoundPlayer.tscn"
+
 [display]
 
 window/size/width=320

@@ -73,7 +73,6 @@ func move_state(input):
 		coyote_time = true
 		coyoteTimeTimer.start()
 	
-
 func climb_state(input):
 	if !is_on_ladder():
 		state = MOVE
@@ -84,6 +83,9 @@ func climb_state(input):
 	velocity = input * moveData.CLIMB_SPEED
 	velocity = move_and_slide(velocity, Vector2.UP)
 		
+func player_die():
+	SoundPlayer.play_sound(SoundPlayer.HURT)
+	get_tree().reload_current_scene()
 	
 func input_jump_release():
 	# If velocity.y < 0 we are going up. This stops the slight hang that happens releasing jump on the way down.
@@ -92,6 +94,7 @@ func input_jump_release():
 			
 func input_double_jump():
 	if Input.is_action_just_pressed("ui_up") and double_jump > 0:
+		SoundPlayer.play_sound(SoundPlayer.JUMP)
 		velocity.y = moveData.JUMP_FORCE
 		double_jump -= 1
 	
@@ -119,6 +122,7 @@ func horizontal_move_input(input):
 	
 func try_jump():
 	if Input.is_action_just_pressed("ui_up") or buffered_jump:
+		SoundPlayer.play_sound(SoundPlayer.JUMP)
 		velocity.y = moveData.JUMP_FORCE
 		buffered_jump = false
 		
@@ -127,7 +131,6 @@ func reset_double_jump():
 		
 func can_jump():
 	return is_on_floor() or coyote_time
-
 
 func apply_gravity():
 	velocity.y += moveData.GRAVITY

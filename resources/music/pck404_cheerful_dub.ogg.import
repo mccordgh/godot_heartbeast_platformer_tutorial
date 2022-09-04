@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/pck404_cheerful_dub.ogg-71829020c212fd52c4d59d197c2a8102.oggstr"
+
+[deps]
+
+source_file="res://resources/music/pck404_cheerful_dub.ogg"
+dest_files=[ "res://.import/pck404_cheerful_dub.ogg-71829020c212fd52c4d59d197c2a8102.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
