@@ -8,8 +8,10 @@ onready var animatedSprite = $AnimatedSprite
 onready var ledgeCheckRight = $LedgeCheckRight
 onready var ledgeCheckLeft = $LedgeCheckLeft
 
+export var SPEED = 50
 
-func _physics_process(delta):
+
+func _physics_process(_delta):
 	var found_wall = is_on_wall()
 	var found_ledge = !ledgeCheckRight.is_colliding() or !ledgeCheckLeft.is_colliding()
 	
@@ -24,5 +26,5 @@ func _physics_process(delta):
 
 	animatedSprite.flip_h = direction.x > 0
 	
-	velocity = direction * 100
-	move_and_slide(velocity, Vector2.UP)
+	velocity = direction * SPEED
+	velocity = move_and_slide(velocity, Vector2.UP)
