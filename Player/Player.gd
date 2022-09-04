@@ -18,7 +18,7 @@ onready var animatedSprite: = $AnimatedSprite
 onready var coyoteTimeTimer: = $CoyoteTimeTimer
 onready var jumpBufferTimer: = $JumpBufferTimer
 onready var ladderCheck: = $LadderCheck
-
+onready var remoteTransform2d = $RemoteTransform2D
 
 func _physics_process(_delta):
 	var input = Vector2.ZERO
@@ -85,8 +85,12 @@ func climb_state(input):
 		
 func player_die():
 	SoundPlayer.play_sound(SoundPlayer.HURT)
-	get_tree().reload_current_scene()
+	queue_free()
+	Events.emit_signal("player_died")
 	
+func connect_camera(camera):
+	remoteTransform2d.remote_path = camera.get_path()
+
 func input_jump_release():
 	# If velocity.y < 0 we are going up. This stops the slight hang that happens releasing jump on the way down.
 	if Input.is_action_just_released("ui_up") and velocity.y < moveData.JUMP_RELEASE_FORCE: 
